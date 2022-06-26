@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 
 <body>
@@ -21,11 +21,11 @@
       <form>
         <div class="form-group">
           <h2>Search for City?</h2>
-          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Is it raining GF???">
+          <input type="text" class="form-control" id="search-input" placeholder="Is it raining GF???">
         </div>
       </form>
       <!-- search button -->
-      <button type="button" class="btn btn-primary">Search</button>
+      <button type="button" class="btn btn-primary" id="search-btn" >Search</button>
       <!-- City groups -->
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Cras justo odio</li>
@@ -92,8 +92,12 @@
         </div>
 
         <!-- </div> end of card deck container div 1st below -->
+       
       </div>
+   
     </div>
+  </div>
+    <div id="search-container"> <h1>Search Results</h1></div>
 <script src="app.js"></script>
 
 </body>
