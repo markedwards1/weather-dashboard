@@ -30,8 +30,7 @@ searchBtn.addEventListener('click', search);
 
 
 const attriNum = 0
-
-
+getHistory();
 
 
 //search geo location api with  users city input 
@@ -43,52 +42,90 @@ function getAPIcityLatLong (){
     })
     .then(function (cityData){
         //console.log(cityData);
-        
+        const currentCityLat = cityData.lat;
+        const currentCityLon = cityData.lon;
+        console.log(cityData.name.lat);
+
+
         // separate cityData in to 5 separate arrays.    
         for (let index = 0; index < cityData.length; index++) {
             // const element = cityData[index];
             console.log(cityData[index].name);
-            console.log(cityData[index].country);
-            
-            
-            
-            
-            //create variables to display city & contries
-            // for (let attr = 0; attr < 5; attr++) {                
-            //     console.log(attr);
-            //     const buttonattr = "CityButton" + attr;    
-                
-                
+            console.log(cityData[index].country);                 
                 const city = document.createElement('button');
+            
+
+              ;
                 city.setAttribute('id', "cityButton" + index);                                
                 //Print out text content for city & country
-                city.textContent = cityData[index].name + " " + cityData[index].state + " " + cityData[index].country;
-                //country.textContent = cityData[index].country;
+                city.textContent = cityData[index].name + " " + cityData[index].state + " " + cityData[index].country;                
                 
+
+
                 // append child element search - container
-                cityResults.appendChild(city);
-                
-                // const cityBtn = document.getElementById('buttonCity');
-                // cityBtn.addEventListener('click', addToHistory);
-                // addToHistory();
-                // function addToHistory(){
-                //     console.log(cityBtn);
-                // }
+                cityResults.appendChild(city);         
+                let city1 = document.getElementById('cityButton' + index);
+                city1.addEventListener('click', saveCity);
+                function saveCity(){
+                    city1 = city1.textContent;
+                    console.log("savecity()" + city1);
+                    // location.reload();
+
+                    //set local storage
+                    let storedCity = localStorage.setItem(index, city1);
+                    cityDisplay();
+                    //get local storage
+               
+                }
+
+                function cityDisplay(){
+                    let displaycity = localStorage.getItem(index);
+                    //displaycity = displaycity.textContent;
+                    console.log("getItem " + displaycity);
+                    const citySide1 = document.getElementById('city-side-1');
+                    citySide1.textContent = (displaycity);
+
+                    //render search history into 
+                      
+
+                 
+                    // we need to get the local storage to save multipul items with different keys. 
+
+
+
+
+                  }
         }
         //get lat & long
         //add eventListener to save city to history. 
-       //when i click on the city name, it adds it to the history    
-   // }
-})
-
+        
+        //when i click on the city name, it adds it to the history    
+        
+        
+        
+    })
+    
+    
 } // end of getAPIcityLatLong
 
+
+function getHistory(){
+    const getHistory = localStorage.getItem(0);
+    console.log('outside ' + getHistory)
+
+}
 
 
 
 //grab users city input from search
+
+
+
+
 function search(){
     console.log(searchInput.value);
     getAPIcityLatLong()
+
+
 
 }
